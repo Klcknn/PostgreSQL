@@ -142,7 +142,6 @@
             hobi CHAR(100)
         );
     ```
-  *  
 * **PRIMARY KEY:** 
   * Bir sütunun NULL içermemesini ve sütundaki verilerin
     BENZERSİZ olmasını sağlar. (NOT NULL e UNIQUE)
