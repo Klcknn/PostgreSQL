@@ -244,6 +244,21 @@
         -- employees tablosunda name 'William Wilson' olan kayıtların name=isim, age=yaş ve salary=ücret olacak şekilde verileri bana getir veya göster.
         SELECT name AS isim, age AS yaş, salary AS ücret FROM employees WHERE name = 'William Wilson';
         
+        -- employees tablosunda tüm kayıtların salary ortalamasını bana getir veya göster.
+        SELECT AVG(salary) FROM employees;
+
+        -- employees tablosunda tüm kayıtların MAX salary verisini bana getir veya göster.
+        SELECT MAX(salary) FROM employees;
+
+        -- employees tablosunda tüm kayıtların MIN salary verisini bana getir veya göster.
+        SELECT MIN(salary) FROM employees;
+
+        -- employees tablosunda tüm kayıtların salarylerinin toplamını bana Toplam sütunu adı altında getir veya göster.
+        SELECT SUM(salary) AS Toplam FROM employees;
+
+        -- employees tablosunda tüm kayıtların salary ortalamasını iki haneliye yuvarlayacak şekilde bana getir veya göster.
+        SELECT ROUND(AVG(salary), 2) FROM employees;
+
         -- concatination operator Sütunları birleştrime işlemi
         SELECT name || ' ' || age AS new_column, salary FROM employees;
         
