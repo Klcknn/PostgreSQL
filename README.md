@@ -25,9 +25,11 @@
 
 
 * 1. Data Ouery Language (DQL)- Veri Sorgulama Dili : 
+
 	    SELECT: Database içindeki verileri alıp uygun sorgularla bize gösterir veya getirir.
 
 * 2. Data Manipulation Language (DML)- Veri Değiştirme Dili : 
+
         INSERT: Database içine veri ekleme işlemi yapar.
         UPDATE: Databasedeki verileri günceller.
         DELETE: Databasedeki verileri siler.
