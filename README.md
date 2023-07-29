@@ -228,25 +228,57 @@
         (8, 'Linda Davis', 'Sales', 40, 6500.00, '2015-12-03'),
         (9, 'James Miller', 'IT', 27, 6000.00, '2018-11-25'),
         (10, 'Jennifer Taylor', 'Marketing', 31, 5100.00, '2016-07-20');
-
+        
+        -- employees tablosundaki tüm verileri bana getir 
         SELECT * FROM employees;
+
+        -- employees tablosunda yaşı 30 dan büyük olan kayıtların name, age ve salary verisini bana getir veya göster
         SELECT name, age, salary FROM employees WHERE age > 30;
+        
+        -- employees tablosunda departmenti Finance olmayan kayıtların tüm verilerini bana getir veya göster.
+        SELECT * FROM employees WHERE NOT department='Finance';
+        
+        -- employees tablosunda departmenti Finance ve Sales olan kayıtların name ve salary verilerini bana getir veya göster.
+        SELECT name, salary FROM employees WHERE department IN('Finance', 'Sales');
+        
+        -- employees tablosunda name 'William Wilson' olan kayıtların name=isim, age=yaş ve salary=ücret olacak şekilde verileri bana getir veya göster.
         SELECT name AS isim, age AS yaş, salary AS ücret FROM employees WHERE name = 'William Wilson';
+        
+        -- concatination operator Sütunları birleştrime işlemi
+        SELECT name || ' ' || age AS new_column, salary FROM employees;
+        
         SELECT * FROM employees WHERE department IN ('Marketing', 'IT', 'Finance') ORDER BY department ASC, name ASC;
-        CREATE VIEW name_view AS SELECT name AS isim, age AS yaş, salary AS ücret FROM employees WHERE name = 'William Wilson'; 
-        CREATE VIEW age_25_40_view SELECT * FROM employees WHERE age BETWEEN 25 AND 40 ; -- Daha kolay okunur hale getirmek(readable) için CREATE VIEW view_name AS yapısını kullanıyoruz.
-        ALTER TABLE employees RENAME COLUMN name TO isim;    -- Tablo içindeki sütunun ismini bu şekilde değiştirebiliriz. name --> isim 
+        
+        CREATE VIEW name_view AS SELECT name AS isim, age AS yaş, salary AS ücret FROM employees WHERE name = 'William Wilson';
+
+        -- Daha kolay okunur hale getirmek(readable) için CREATE VIEW view_name AS yapısını kullanıyoruz.
+        CREATE VIEW age_25_40_view SELECT * FROM employees WHERE age BETWEEN 25 AND 40 ; 
+        
+        -- Tablo içindeki sütunun ismini bu şekilde değiştirebiliriz. name --> isim
+        ALTER TABLE employees RENAME COLUMN name TO isim;     
     
     ```
 
 * **DELETE:** 
   ```bash
-      DELETE FROM employees;   --  **Note:** Tablodaki tüm verileri siler, fakat tablonun kendisini silmez. 
-      DELETE FROM employees WHERE name = 'William Wilson'; -- isim olarak William Wilson girilen kaydı (record) siler.
-      DELETE FROM employees WHERE age > 30 ; -- yaşı 30 dan büyük olarak girilen kayıtları (record) siler.
-      DELETE FROM employees WHERE age=30 OR name='Jane Smith'; -- yaşı 30 olan veya ismi Jane Smith olan kayıtları (record) siler.
-      DELETE FROM employees WHERE department='Marketing' AND name='Jane Smith'; -- departmanı Marketing olan ve ismi de Jane Smith olan kayıtları (record) siler.
-      DELETE FROM employees WHERE age BETWEEN 25 AND 40 ; -- yaşları 25 ile 40(dahil) arasında olanların kayıtlarını (record) siler.
+
+      -- **Note:** Tablodaki tüm verileri siler, fakat tablonun kendisini silmez. 
+      DELETE FROM employees;   
+
+      -- isim olarak William Wilson girilen kaydı (record) siler.
+      DELETE FROM employees WHERE name = 'William Wilson'; 
+      
+      -- yaşı 30 dan büyük olarak girilen kayıtları (record) siler.
+      DELETE FROM employees WHERE age > 30 ; 
+
+      -- yaşı 30 olan veya ismi Jane Smith olan kayıtları (record) siler.
+      DELETE FROM employees WHERE age=30 OR name='Jane Smith'; 
+
+      -- departmanı Marketing olan ve ismi de Jane Smith olan kayıtları (record) siler.
+      DELETE FROM employees WHERE department='Marketing' AND name='Jane Smith'; 
+
+      -- yaşları 25 ile 40(dahil) arasında olanların kayıtlarını (record) siler.
+      DELETE FROM employees WHERE age BETWEEN 25 AND 40 ; 
   ```
  
 * **TRUNCATE:** 
@@ -254,15 +286,15 @@
 * **Truncate** kodu geri getirilmesini(rolling back) istemediğimiz tabloları silmek icin kullanırız.
 * 
   ```bash
-      DELETE FROM employees;   --  **Note:** Tablodaki tüm verileri siler, fakat tablonun kendisini silmez. 
-      DELETE FROM employees WHERE name = 'William Wilson'; -- isim olarak William Wilson girilen kaydı (record) siler.
-      DELETE FROM employees WHERE age > 30 ; -- yaşı 30 dan büyük olarak girilen kayıtları (record) siler.
-      DELETE FROM employees WHERE age=30 OR name='Jane Smith'; -- yaşı 30 olan veya ismi Jane Smith olan kayıtları (record) siler.
-      DELETE FROM employees WHERE department='Marketing' AND name='Jane Smith'; -- departmanı Marketing olan ve ismi de Jane Smith olan kayıtları (record) siler.
-      DELETE FROM employees WHERE age BETWEEN 25 AND 40 ; -- yaşları 25 ile 40(dahil) arasında olanların kayıtlarını (record) siler.
-      DROP TABLE employees; -- employees tablosunu silip, geri dönüşüme gönderir.
-      DROP TABLE employees PURGE ; -- employees tablosunu geri getirilmeyecek şekilde siler.
-      FLASHBACK TABLE employees TO BEFORE DROP ; -- employees tablosunu geri getirir.
+      -- employees tablosunu silip, geri dönüşüme gönderir.
+      DROP TABLE employees; 
+
+      -- employees tablosunu geri getirir.
+      FLASHBACK TABLE employees TO BEFORE DROP ; 
+
+      -- employees tablosunu geri getirilmeyecek şekilde siler.
+      DROP TABLE employees PURGE ; 
+
   ```
  * **Note that:**  *DELETE FROM* ile sildigimiz kayitlar geri getirebilir ama *TRUNCATE* ile silinen veriler geri getirilemez!!!.
  
