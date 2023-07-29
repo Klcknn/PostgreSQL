@@ -18,26 +18,26 @@
 * Bir Tabloda birden fazla Foreign Key olabilir Foreign Key NULL degeri kabul eder. Foreign Key olarak tanimlanan field’ da tekrarlar olabilir.
 * Kısacası; Foreign Key, değerleri farklı bir tablodaki Primary Key ile eşleşen bir sütun veya sütunların birleşimidir.
 #### Diğer Kısa Notlarım:
--- SERIAL: Otomatik sıralı bir şekilde veri giriş yapar. 
--- UNIQUE: Tabloda aynı sütun içinde verinin eşsiz olmasını sağlar.
--- NOT NULL: Tablodaki verinin değer atamasını zorunlu kılar.Yani ilgili alan veya sütun boş bırakılamaz.
--- REAL: Ondalık sayı girişinde kullanılır.
+* **SERIAL:** Otomatik sıralı bir şekilde veri giriş yapar. 
+* **UNIQUE:** Tabloda aynı sütun içinde verinin eşsiz olmasını sağlar.
+* **NOT NULL:** Tablodaki verinin değer atamasını zorunlu kılar.Yani ilgili alan veya sütun boş bırakılamaz.
+* **REAL:** Ondalık sayı girişinde kullanılır.
 
 
-- 1. Data Ouery Language (DQL)- Veri Sorgulama Dili : 
+- * 1. Data Ouery Language (DQL)- Veri Sorgulama Dili : 
 	SELECT: Database içindeki verileri alıp uygun sorgularla bize gösterir veya getirir.
 
-- 2. Data Manipulation Language (DML)- Veri Değiştirme Dili : 
+- * 2. Data Manipulation Language (DML)- Veri Değiştirme Dili : 
 	INSERT: Database içine veri ekleme işlemi yapar.
 	UPDATE: Databasedeki verileri günceller.
 	DELETE: Databasedeki verileri siler.
 	
-- 3. Data Definition Language (DDL)- Veri Sorgulama Dili : 
+- * 3. Data Definition Language (DDL)- Veri Sorgulama Dili : 
 	CREATE: Bir database(veritabanı) veya tabloyu(table) oluşturmamızı sağlar.
 	ALTER:  Bir database(veritabanı) veya tabloyu(table) güncellememizi sağlar.
 	DROP:   Bir database(veritabanı) veya tabloyu(table) silmemizi sağlar.
 
-- 4. Data Control Language (DCL)- Veri Sorgulama Dili : 
+- * 4. Data Control Language (DCL)- Veri Sorgulama Dili : 
 	GRANT:  Bir kullanıcıya yetki vermek için kullanılır.
 	REVOKE: Bir kullanıcıya verilen yetkiyi geri almak için kullanılır.
 
