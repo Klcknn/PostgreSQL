@@ -24,20 +24,20 @@
 * **REAL:** Ondalık sayı girişinde kullanılır.
 
 
-- * 1. Data Ouery Language (DQL)- Veri Sorgulama Dili : 
+* 1. Data Ouery Language (DQL)- Veri Sorgulama Dili : 
 	SELECT: Database içindeki verileri alıp uygun sorgularla bize gösterir veya getirir.
 
-- * 2. Data Manipulation Language (DML)- Veri Değiştirme Dili : 
-	INSERT: Database içine veri ekleme işlemi yapar.
+* 2. Data Manipulation Language (DML)- Veri Değiştirme Dili : 
+    INSERT: Database içine veri ekleme işlemi yapar.
 	UPDATE: Databasedeki verileri günceller.
 	DELETE: Databasedeki verileri siler.
 	
-- * 3. Data Definition Language (DDL)- Veri Sorgulama Dili : 
+* 3. Data Definition Language (DDL)- Veri Sorgulama Dili : 
 	CREATE: Bir database(veritabanı) veya tabloyu(table) oluşturmamızı sağlar.
 	ALTER:  Bir database(veritabanı) veya tabloyu(table) güncellememizi sağlar.
 	DROP:   Bir database(veritabanı) veya tabloyu(table) silmemizi sağlar.
 
-- * 4. Data Control Language (DCL)- Veri Sorgulama Dili : 
+* 4. Data Control Language (DCL)- Veri Sorgulama Dili : 
 	GRANT:  Bir kullanıcıya yetki vermek için kullanılır.
 	REVOKE: Bir kullanıcıya verilen yetkiyi geri almak için kullanılır.
 
