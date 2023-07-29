@@ -53,15 +53,15 @@
 
 #### Database İşlemleri
 
-  1. Database Oluşturma :
+- 1. Database Oluşturma :
     ```bash
         CREATE DATABASE kenandb
     ```
-  2. Database Silme :
+- 2. Database Silme :
     ```bash
         DROP DATABASE kenandb
     ```
-  3. Tablo Oluşturma :
+- 3. Tablo Oluşturma :
     ```bash
         CREATE Table arkadaslar(
             id INTEGER             
@@ -73,12 +73,12 @@
         );
     ```
 
-  4. Mevcut tablodan yeni bir tablo oluşturma işlemi :
+- 4. Mevcut tablodan yeni bir tablo oluşturma işlemi :
     ```bash
         CREATE TABLE adresler as SELECT isim, adres FROM arkadaslar 
     ```
 
-  5. Tabloların içine Veri Ekleme İşlemi :
+- 5. Tabloların içine Veri Ekleme İşlemi :
     ```bash
         INSERT INTO arkadaslar VALUES(1,"Ali","Tas","Kayseri","2000-04-23","Futbol");
         INSERT INTO arkadaslar VALUES(2,"Veli","Tas","Kayseri","2000-04-23","Futbol");
@@ -86,18 +86,18 @@
         INSERT INTO arkadaslar VALUES(4,"Can","Tas","Kayseri","2000-04-23","Futbol");
     ```
     **Note:** Komutları çoklu execute yapmak için sonlarına **" ; "** eklememiz gerekiyor.
-  6. Tabloların Bazı Sütunlarının içine Veri Ekleme İşlemi :
+- 6. Tabloların Bazı Sütunlarının içine Veri Ekleme İşlemi :
     ```bash
         INSERT INTO arkadaslar(isim, soyisim) VALUES("Ali","Tas");
         INSERT INTO arkadaslar(id, dogum_tarihi, hobi) VALUES(2,"2000-04-23","Futbol");
     ```
 
-  7. Tabloların Tüm Kayıtlarını Getirme veya Gösterme İşlemi :
+- 7. Tabloların Tüm Kayıtlarını Getirme veya Gösterme İşlemi :
     ```bash
         SELECT * FROM arkadaslar;
         SELECT * FROM adresler;
     ```
-  8. Tabloların Bazı Kayıtlarını Getirme veya Gösterme İşlemi :
+- 8. Tabloların Bazı Kayıtlarını Getirme veya Gösterme İşlemi :
     ```bash
         SELECT isim, soyisim FROM arkadaslar;
         SELECT dogum_tarihi FROM arkadaslar;
