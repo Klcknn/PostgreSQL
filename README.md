@@ -190,3 +190,84 @@
             hobi CHAR(100)
         );
     ```
+
+### Notlarım-3 :
+
+* **WHERE:** 
+  * Bir tabloda sorgulamak istenilen verileri filtrelemek için kullanılır.Kısacası koşul vermek yada belirtmek **WHERE** komutu kullanılır.
+  * - ( = ) : Eşittir ifadesi
+  * - ( > ) : Büyüktür ifadesi
+  * - ( >= ): Büyük yada eşittir ifadesi
+  * - ( < ) : Küçüktür ifadesi
+  * - ( <= ): Küçük yada eşittir ifadesi
+  * - ( <> ): Eşit değildir ifadesi
+  * - ( AND ) ( && ) : Tüm koşulların doğru olması sonucunda True değer döndürülür. 
+  * - ( OR ) ( || )  : Bir koşulun doğru olması sonucunda ise True değer döndürülür. 
+  * - ( ! )          : Koşul sonucuna göre tersi işlem yapar. ( True<=>False ). 
+  
+  * 
+   
+    ```bash
+        CREATE Table employees(
+            id INT PRIMARY KEY,             
+            name VARCHAR(100) NOT NULL,
+            department VARCHAR(50),
+            age INT CHECK (yas>18),
+            salary DECIMAL(10,2),
+            date DATE
+        );
+        INSERT INTO employees (id, name, department, age, salary, hire_date) 
+        VALUES
+        (1, 'John Doe', 'HR', 30, 5000.00, '2020-05-15'),
+        (2, 'Jane Smith', 'Finance', 28, 5500.00, '2019-10-10'),
+        (3, 'Michael Johnson', 'Sales', 35, 6000.00, '2018-08-22'),
+        (4, 'Emily Adams', 'Marketing', 25, 4800.00, '2021-01-05'),
+        (5, 'Robert Brown', 'IT', 32, 6200.00, '2017-03-12'),
+        (6, 'Sarah Lee', 'HR', 29, 5300.00, '2019-06-30'),
+        (7, 'William Wilson', 'Finance', 26, 5800.00, '2020-09-18'),
+        (8, 'Linda Davis', 'Sales', 40, 6500.00, '2015-12-03'),
+        (9, 'James Miller', 'IT', 27, 6000.00, '2018-11-25'),
+        (10, 'Jennifer Taylor', 'Marketing', 31, 5100.00, '2016-07-20');
+
+        SELECT * FROM employees;
+        SELECT name, age, salary FROM employees WHERE age > 30;
+        SELECT name AS isim, age AS yaş, salary AS ücret FROM employees WHERE name = 'William Wilson';
+        SELECT * FROM employees WHERE department IN ('Marketing', 'IT', 'Finance') ORDER BY department ASC, name ASC;
+        CREATE VIEW name_view AS SELECT name AS isim, age AS yaş, salary AS ücret FROM employees WHERE name = 'William Wilson'; 
+        CREATE VIEW age_25_40_view SELECT * FROM employees WHERE age BETWEEN 25 AND 40 ; -- Daha kolay okunur hale getirmek(readable) için CREATE VIEW view_name AS yapısını kullanıyoruz.
+        ALTER TABLE employees RENAME COLUMN name TO isim;    -- Tablo içindeki sütunun ismini bu şekilde değiştirebiliriz. name --> isim 
+    
+    ```
+
+* **DELETE:** 
+  ```bash
+      DELETE FROM employees;   --  **Note:** Tablodaki tüm verileri siler, fakat tablonun kendisini silmez. 
+      DELETE FROM employees WHERE name = 'William Wilson'; -- isim olarak William Wilson girilen kaydı (record) siler.
+      DELETE FROM employees WHERE age > 30 ; -- yaşı 30 dan büyük olarak girilen kayıtları (record) siler.
+      DELETE FROM employees WHERE age=30 OR name='Jane Smith'; -- yaşı 30 olan veya ismi Jane Smith olan kayıtları (record) siler.
+      DELETE FROM employees WHERE department='Marketing' AND name='Jane Smith'; -- departmanı Marketing olan ve ismi de Jane Smith olan kayıtları (record) siler.
+      DELETE FROM employees WHERE age BETWEEN 25 AND 40 ; -- yaşları 25 ile 40(dahil) arasında olanların kayıtlarını (record) siler.
+  ```
+ 
+* **TRUNCATE:** 
+* **Truncate** kodu bir tablodaki kayitların kesinlikle geri getirilmeyecek şekilde kısacası tamamen silinmesi için kullanılır.Silinen verilerin geri getirilme ihtimali olmuyor.
+* **Truncate** kodu geri getirilmesini(rolling back) istemediğimiz tabloları silmek icin kullanırız.
+* 
+  ```bash
+      DELETE FROM employees;   --  **Note:** Tablodaki tüm verileri siler, fakat tablonun kendisini silmez. 
+      DELETE FROM employees WHERE name = 'William Wilson'; -- isim olarak William Wilson girilen kaydı (record) siler.
+      DELETE FROM employees WHERE age > 30 ; -- yaşı 30 dan büyük olarak girilen kayıtları (record) siler.
+      DELETE FROM employees WHERE age=30 OR name='Jane Smith'; -- yaşı 30 olan veya ismi Jane Smith olan kayıtları (record) siler.
+      DELETE FROM employees WHERE department='Marketing' AND name='Jane Smith'; -- departmanı Marketing olan ve ismi de Jane Smith olan kayıtları (record) siler.
+      DELETE FROM employees WHERE age BETWEEN 25 AND 40 ; -- yaşları 25 ile 40(dahil) arasında olanların kayıtlarını (record) siler.
+      DROP TABLE employees; -- employees tablosunu silip, geri dönüşüme gönderir.
+      DROP TABLE employees PURGE ; -- employees tablosunu geri getirilmeyecek şekilde siler.
+      FLASHBACK TABLE employees TO BEFORE DROP ; -- employees tablosunu geri getirir.
+  ```
+ * **Note that:**  *DELETE FROM* ile sildigimiz kayitlar geri getirebilir ama *TRUNCATE* ile silinen veriler geri getirilemez!!!.
+ 
+
+ ### Notlarım-4 :
+
+ * **SUBQUERIES:** 
+  * Bir tabloda sorgulamak istenilen verileri filtrelemek için kullanılır.Kısacası koşul vermek yada belirtmek **WHERE** komutu kullanılır.
