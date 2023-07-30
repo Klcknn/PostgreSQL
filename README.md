@@ -340,7 +340,7 @@
       SELECT marka_isim, calisan_sayisi, (SELECT MAX(maas) FROM calisanlar WHERE isyeri=marka_isim) AS max_maas FROM markalar;
 
       -- Her markanin ismini ve o markaya ait calisanlarin toplam maaşini listeleyelim.
-      SELECT marka_isim, (SELECT MAX(maas) FROM calisanlar WHERE isyeri=marka_isim) AS max_maas FROM markalar;
+      SELECT marka_isim, (SELECT SUM(maas) FROM calisanlar WHERE isyeri=marka_isim) AS max_maas FROM markalar;
 
   ```
 
