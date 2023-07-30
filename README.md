@@ -1,5 +1,28 @@
 ## PostgreSQL Server :
-### Notlarım-1 :
+## İçindekiler
+
+- [PostgreSQL Server :](#postgresql-server-)
+- [İçindekiler](#i̇çindekiler)
+- [1. Notlarım:](#1-notlarım)
+    - [PRIMARY KEY:](#primary-key)
+    - [FOREIGN KEY (REFERENCES):](#foreign-key-references)
+    - [Diğer Kısa Notlarım:](#diğer-kısa-notlarım)
+    - [Database İşlemleri](#database-i̇şlemleri)
+- [2. Notlarım:](#2-notlarım)
+  - [Constraint](#constraint)
+    - [UNIQUE](#unique)
+    - [NOT NULL](#not-null)
+    - [PRIMARY KEY](#primary-key-1)
+    - [FOREIGN KEY](#foreign-key)
+    - [CHECK](#check)
+- [3. Notlarım:](#3-notlarım)
+    - [WHERE](#where)
+    - [DELETE](#delete)
+    - [TRUNCATE](#truncate)
+- [4. Notlarım:](#4-notlarım)
+    - [SUBQUERIES](#subqueries)
+    - [EXISTS and NOT EXISTS](#exists-and-not-exists)
+## 1. Notlarım:
 
 #### PRIMARY KEY: 
 * Primary key tek bir kolon olabileceği gibi birden fazla kolonun birleşimi de olabilir.	
@@ -104,9 +127,10 @@
         SELECT adres FROM adresler;
     ```
 
-### Notlarım-2 :
+## 2. Notlarım:
 
-#### Constraint
+### Constraint
+#### UNIQUE
 * **UNIQUE:** 
   * Bir sütundaki tüm değerlerin Benzersiz/Tekrarsız yani tek
     olmasını sağlar.
@@ -123,7 +147,7 @@
             hobi CHAR(100)
         );
     ```
-
+#### NOT NULL
 * **NOT NULL:** 
   * Bir sütunun NULL içermemesini sağlar. NOT NULL
     kısıtlaması için constraint ismi tanımlanmaz. Bu kısıtlama veri türünden
@@ -142,6 +166,7 @@
             hobi CHAR(100)
         );
      ```
+#### PRIMARY KEY
 * **PRIMARY KEY:** 
   * Bir sütunun NULL içermemesini ve sütundaki verilerin
     BENZERSİZ olmasını sağlar. (NOT NULL e UNIQUE)
@@ -159,7 +184,7 @@
             hobi CHAR(100)
         );
     ```
-
+#### FOREIGN KEY
 * **FOREIGN KEY:** 
   * Başka bir tablodaki **Primary Key**’ i referans göstermek için
     kullanılır. Böylelikle, tablolar arasında ilişki kurulmuş olur.
@@ -173,6 +198,7 @@
   * **Not2:** **«Child Table»** silmeden **«Parent Table»** silemeyiz. Önce **«Child Table»**
     silinir, daha sonrada **«Parent Table»** silinir.
 
+#### CHECK
 * **CHECK:** 
   * Bir sütuna yerleştirilebilecek değer aralığını sınırlamak için
     kullanılır.
@@ -191,8 +217,8 @@
         );
     ```
 
-### Notlarım-3 :
-
+## 3. Notlarım:
+#### WHERE
 * **WHERE:** 
   * Bir tabloda sorgulamak istenilen verileri filtrelemek için kullanılır.Kısacası koşul vermek yada belirtmek **WHERE** komutu kullanılır.
   * - ( = ) : Eşittir ifadesi
@@ -273,7 +299,7 @@
         ALTER TABLE employees RENAME COLUMN name TO isim;     
     
     ```
-
+#### DELETE
 * **DELETE:** 
   ```bash
 
@@ -295,7 +321,8 @@
       -- yaşları 25 ile 40(dahil) arasında olanların kayıtlarını (record) siler.
       DELETE FROM employees WHERE age BETWEEN 25 AND 40 ; 
   ```
- 
+
+#### TRUNCATE
 * **TRUNCATE:** 
 * **Truncate** kodu bir tablodaki kayitların kesinlikle geri getirilmeyecek şekilde kısacası tamamen silinmesi için kullanılır.Silinen verilerin geri getirilme ihtimali olmuyor.
 * **Truncate** kodu geri getirilmesini(rolling back) istemediğimiz tabloları silmek icin kullanırız.
@@ -314,7 +341,8 @@
  * **Note that:**  *DELETE FROM* ile sildigimiz kayitlar geri getirebilir ama *TRUNCATE* ile silinen veriler geri getirilemez!!!.
  
 
-### Notlarım-4 :
+## 4. Notlarım:
+#### SUBQUERIES
 * **SUBQUERIES:** 
 * Başka bir SQL sorgusunun içinde bulunan ve onun sonucundan yararlanarak çalışan bir sorgudur.Böylelikle veritabanında daha karmaşık ve derin bir sorgulama yapmamıza olanak sağlar.
 
@@ -343,7 +371,7 @@
       SELECT marka_isim, (SELECT SUM(maas) FROM calisanlar WHERE isyeri=marka_isim) AS max_maas FROM markalar;
 
   ```
-
+#### EXISTS and NOT EXISTS
 * **EXISTS and NOT EXISTS:** 
 * *EXISTS* ve *NOT EXISTS* ifadeler subqueryler ile beraber kullanılır ve bu ifadeler alt sorgudan gelen değerlerin içerisinde bir değerin olup olmamasına göre işlem yapmamızı sağlar.
 * Kullanım olarak *IN* yapısına bezer.
