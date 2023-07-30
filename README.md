@@ -314,7 +314,46 @@
  * **Note that:**  *DELETE FROM* ile sildigimiz kayitlar geri getirebilir ama *TRUNCATE* ile silinen veriler geri getirilemez!!!.
  
 
- ### Notlarım-4 :
+### Notlarım-4 :
+* **SUBQUERIES:** 
+* Başka bir SQL sorgusunun içinde bulunan ve onun sonucundan yararlanarak çalışan bir sorgudur.Böylelikle veritabanında daha karmaşık ve derin bir sorgulama yapmamıza olanak sağlar.
 
- * **SUBQUERIES:** 
-  * Bir tabloda sorgulamak istenilen verileri filtrelemek için kullanılır.Kısacası koşul vermek yada belirtmek **WHERE** komutu kullanılır.
+  ```bash
+      -- Personel sayısı 1000 den fazla olan şirketlerin isimlerini ve bu şirkette çalışan personelin isimlerini getirelim. 
+      SELECT sirket_name, personel_name FROM personel WHERE sirket IN (SELECT sirket_name FROM sirketler WHERE personel_sayisi > 1000)
+
+      -- Şirket ID si 10 ile 35 arasında olan şirketlerin isimlerini ve bu şirkette çalışan personelin şirket isimlerini, maaşlarını ve şehir bilgilerini getirelim. 
+      SELECT sirket_name, personel_maas, sehir FROM personel WHERE sirket IN (SELECT sirket_name FROM sirketler WHERE id BETWEEN 10  AND 35)
+
+      -- Şirketler tablosunda min ve max maaş değerleri arasında olan şirketlerin isimlerini ve bu şirkette çalışan personelin tüm bilgilerini getirelim. 
+      SELECT * FROM personel WHERE sirket BETWEEN (SELECT MIN(maas) FROM sirketler) AND (SELECT MAXN(maas) FROM sirketler)
+  ``` 
+* SELECT CLAUSE yapısı **SELECT** 'den sonra kullanılır.Burda kullanılan subquery yapısı sadece bir değer döndürmek zorundadır.
+* Bu yapıda tek bir değer döndüğü için **AGGREGATE FUNCTION( SUM, COUNT, MIN, MAX, AVG )** fonksiyonları kullanılır.   
+
+ ```bash
+     -- Her markanin id’sini, ismini ve toplam kaç şehirde bulunduğunu sehir_sayısı olarak listeleyelim.
+      SELECT marka_id,marka_isim, (SELECT COUNT(DISTINCT sehir) FROM calisanlar WHERE isyeri=marka_isim) AS sehir_sayisi
+      FROM markalar;
+
+     -- Her markanin ismini, calisan sayisini ve o markaya ait calisanlarin maksimum maaşini listeleyelim.
+      SELECT marka_isim, calisan_sayisi, (SELECT MAX(maas) FROM calisanlar WHERE isyeri=marka_isim) AS max_maas FROM markalar;
+
+      -- Her markanin ismini ve o markaya ait calisanlarin toplam maaşini listeleyelim.
+      SELECT marka_isim, (SELECT MAX(maas) FROM calisanlar WHERE isyeri=marka_isim) AS max_maas FROM markalar;
+
+  ```
+
+* **EXISTS and NOT EXISTS:** 
+* *EXISTS* ve *NOT EXISTS* ifadeler subqueryler ile beraber kullanılır ve bu ifadeler alt sorgudan gelen değerlerin içerisinde bir değerin olup olmamasına göre işlem yapmamızı sağlar.
+* Kullanım olarak *IN* yapısına bezer.
+ ```bash
+    -- Eğer Students tablosundaki Department_ID alanındaki değer, Department tablosundaki Department_ID alanındaki değer var ise ilgili öğrencinin adını getirecek sorguyu yazalım.
+    SELECT name FROM Students AS s WHERE EXISTS (SELECT * FROM Department AS d WHERE s.Department_ID=d.Department_ID)
+
+    -- Eğer Students tablosundaki Department_ID alanındaki değer, Department tablosundaki Department_ID alanındaki değer yok ise ilgili öğrencinin adını getirecek sorguyu yazalım.
+    SELECT name FROM Students AS s WHERE NOT EXISTS (SELECT * FROM Department AS d WHERE s.Department_ID=d.Department_ID)
+  ```
+
+
+
