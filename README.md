@@ -4,9 +4,9 @@
 - [PostgreSQL Server :](#postgresql-server-)
 - [İçindekiler](#i̇çindekiler)
 - [1. Notlarım:](#1-notlarım)
-    - [PRIMARY KEY:](#primary-key)
-    - [FOREIGN KEY (REFERENCES):](#foreign-key-references)
-    - [Diğer Kısa Notlarım:](#diğer-kısa-notlarım)
+    - [PRIMARY KEY](#primary-key)
+    - [FOREIGN KEY (REFERENCES)](#foreign-key-references)
+    - [Diğer Kısa Notlarım](#diğer-kısa-notlarım)
     - [Database İşlemleri](#database-i̇şlemleri)
 - [2. Notlarım:](#2-notlarım)
   - [Constraint](#constraint)
@@ -24,7 +24,7 @@
     - [EXISTS and NOT EXISTS](#exists-and-not-exists)
 ## 1. Notlarım:
 
-#### PRIMARY KEY: 
+#### PRIMARY KEY 
 * Primary key tek bir kolon olabileceği gibi birden fazla kolonun birleşimi de olabilir.	
 * Ayrıca birden fazla field PK olarak belirlenebilir.   --> CONSTRAINT prmry_key_all PRIMARY KEY(id, name)
 * Primary Key değeri boş geçilemez ve NULL değer alamaz.
@@ -34,13 +34,13 @@
 * Primary key her turlu datayi icerebilir. Sayi, String.
 * Her tabloda Primary Key olmasi zorunlu değildir.
 
-#### FOREIGN KEY (REFERENCES):
+#### FOREIGN KEY (REFERENCES)
 * Foreign Key (yabancı anahtar) ikincil anahtar olarak da ifade edilmektedir. Bir veri tablosuna girilebilecek değerleri başka bir veri tablosundaki alanlarla ilişkilendirmeye yarar. Özetle, başka bir tablonun birincil anahtarının bir diğer tablo içerisinde yer almasıdır.
  
 * Çoğunlukla bir ana tablo (parent) ile alt tablonun (child) ilişkilendirilmesinde kullanılır.Bu sayede olası veri tekrarlarının önüne geçilebilmekte ve ilerleyen zamanda söz konusu olabilecek güncellemelerde ilgili verilerin her yerde güncellenmesi sağlanabilmektedir. 
 * Bir Tabloda birden fazla Foreign Key olabilir Foreign Key NULL degeri kabul eder. Foreign Key olarak tanimlanan field’ da tekrarlar olabilir.
 * Kısacası; Foreign Key, değerleri farklı bir tablodaki Primary Key ile eşleşen bir sütun veya sütunların birleşimidir.
-#### Diğer Kısa Notlarım:
+#### Diğer Kısa Notlarım
 * **SERIAL:** Otomatik sıralı bir şekilde veri giriş yapar. 
 * **UNIQUE:** Tabloda aynı sütun içinde verinin eşsiz olmasını sağlar.
 * **NOT NULL:** Tablodaki verinin değer atamasını zorunlu kılar.Yani ilgili alan veya sütun boş bırakılamaz.
